@@ -59,9 +59,13 @@ if __name__ == '__main__':
 
                 encryption.sort()
 
+
+            # Escape double-quotes in the ESSID with another double-quote (see RFC-4180)
+            essid = essid.replace('"', '""')
+
             # Store network to csv file
             # If MODE is not specified
             if mode == "" and essid != "":
-                    outfile.write("\n" + essid + "," + bssid + "," + ' '.join(encryption) + "," + gpslat + "," + gpslng)
+                    outfile.write('\n"' + essid + '",' + bssid + ',' + ' '.join(encryption) + ',' + gpslat + ',' + gpslng)
             elif essid != "" and mode == encryption[0]:
-                    outfile.write("\n" + essid + "," + bssid + "," + ' '.join(encryption) + "," + gpslat + "," + gpslng)
+                    outfile.write('\n"' + essid + ',' + bssid + ',' + ' '.join(encryption) + ',' + gpslat + ',' + gpslng)
